@@ -23,7 +23,7 @@
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.724"
-        app:layout_constraintStart_toEndOf="@+id/imageView2"
+        app:layout_constraintStart_toEndOf="@+id/deputados_img"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingConstraints" />
 

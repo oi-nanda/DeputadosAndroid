@@ -35,7 +35,7 @@ public class DetailDeputadosActivity extends AppCompatActivity {
 
     RecyclerView recyclerView;
     ImageView button, foto_perfil;
-    TextView nome, sigla, cpf, dataNascimento;
+    TextView nome, sigla, cpf, dataNascimento, email;
     String foto;
 
     @Override
@@ -51,12 +51,15 @@ public class DetailDeputadosActivity extends AppCompatActivity {
         menuItemHome.setOnMenuItemClickListener(this::onClickGoToHome);
         menuItemProfile.setOnMenuItemClickListener(this::onClickGoToProfile);
         menuItemSettings.setOnMenuItemClickListener(this::onClickGoToSettings);
+
         button = findViewById(R.id.go_back);
+
         nome = findViewById(R.id.textView3);
         sigla = findViewById(R.id.textView4);
         cpf = findViewById(R.id.textView5);
         dataNascimento = findViewById(R.id.textView6);
         foto_perfil = findViewById(R.id.imageView4);
+        email = findViewById(R.id.email_deputado);
 
 
         button.setOnClickListener(new View.OnClickListener() {
@@ -104,14 +107,14 @@ public class DetailDeputadosActivity extends AppCompatActivity {
             JSONObject json = new JSONObject(responseData);
             JSONObject dadosObject = json.getJSONObject("dados");
 
-           // sigla.setText("SIGLA PARTIDO: " + dadosObject.getString("sigla"));
             nome.setText("NOME: " + dadosObject.getString("nomeCivil"));
             cpf.setText("CPF: "+ dadosObject.getString("cpf"));
             dataNascimento.setText("DATA NASCIMENTO: "+ dadosObject.getString("dataNascimento"));
             JSONObject ultimoStatus = dadosObject.getJSONObject("ultimoStatus");
+            sigla.setText("SIGLA PARTIDO: " + ultimoStatus.getString("siglaPartido"));
             foto = ultimoStatus.getString("urlFoto");
+            email.setText("EMAIL: " + ultimoStatus.getString("email"));
             Picasso.get().load(foto).into(foto_perfil);
-            // foto = dadosObject.getString("urlFoto");
         } catch (JSONException e) {
             throw new RuntimeException(e);
         }

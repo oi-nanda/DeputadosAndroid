@@ -35,7 +35,6 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class HomeActivity extends AppCompatActivity {
 
 
-    private Retrofit retrofit;
     PartidosAdapter partidosAdapter;
     RecyclerView recyclerView;
 

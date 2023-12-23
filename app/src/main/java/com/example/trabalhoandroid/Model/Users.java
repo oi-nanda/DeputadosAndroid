@@ -1,4 +1,4 @@
-package com.example.trabalhoandroid;
+package com.example.trabalhoandroid.Model;
 
 public class Users {
 

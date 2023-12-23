@@ -32,7 +32,7 @@ import retrofit2.Response;
 public class DetailPartidoActivity extends AppCompatActivity {
 
     RecyclerView recyclerView;
-    TextView nome, sigla, numero, website;
+    TextView nome, sigla, numero, website, lider;
     ImageView back;
 
     @Override
@@ -53,6 +53,7 @@ public class DetailPartidoActivity extends AppCompatActivity {
         sigla = findViewById(R.id.textView9);
         numero = findViewById(R.id.textView10);
         website = findViewById(R.id.textView11);
+        lider = findViewById(R.id.textView12);
         back = findViewById(R.id.back);
 
         detailPartido();
@@ -102,11 +103,22 @@ public class DetailPartidoActivity extends AppCompatActivity {
             JSONObject json = new JSONObject(responseData);
             JSONObject dadosObject = json.getJSONObject("dados");
 
-            sigla.setText(dadosObject.getString("sigla"));
-            nome.setText(dadosObject.getString("nome"));
+            sigla.setText( "SIGLA: " +dadosObject.getString("sigla"));
+            nome.setText( "NOME: " + dadosObject.getString("nome"));
 
-            website.setText(dadosObject.getString("urlWebSite"));
-            numero.setText(dadosObject.getString("numeroEleitoral"));
+            website.setText("WEBSITE: " + dadosObject.getString("urlWebSite"));
+            numero.setText( "NÚMERO ELEITORAL: " + dadosObject.getString( "numeroEleitoral"));
+            
+            if(dadosObject.getString("numeroEleitoral").equals(null)){
+                numero.setText("NÚMERO ELEITORAL: Não encontrado");
+            }
+            if(dadosObject.getString("urlWebSite").equals(null)){
+                numero.setText("WEBSITE: Não encontrado");
+            }
+
+            JSONObject statusObject = dadosObject.getJSONObject("status");
+            JSONObject liderObject = statusObject.getJSONObject("lider");
+            lider.setText("LíDER: " + liderObject.getString("nome"));
 
         } catch (JSONException e) {
             throw new RuntimeException(e);

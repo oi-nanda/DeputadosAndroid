@@ -28,8 +28,7 @@ public class LoginAndroidActivity extends AppCompatActivity {
     
     String email, senha;
     EditText edit_email, edit_senha;
-    FirebaseDatabase database;
-    DatabaseReference reference;
+
     private FirebaseAuth mAuth;
 
     @Override
